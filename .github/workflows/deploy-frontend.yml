@@ -9,8 +9,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-
-    # Configure Environment
+    permissions:
+      contents: read
     environment:
       name: deployment
       url: http://${{ secrets.FRONTEND_HOST }}
