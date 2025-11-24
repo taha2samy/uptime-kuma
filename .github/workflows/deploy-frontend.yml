@@ -14,8 +14,9 @@ jobs:
     environment:
       name: deployment
       url: http://${{ vars.FRONTEND_HOST }}
-      permissions:
-        contents: read
+
+    permissions:
+      contents: read
     steps:
       - name: Execute Remote Deployment via SSH
         uses: appleboy/ssh-action@master
