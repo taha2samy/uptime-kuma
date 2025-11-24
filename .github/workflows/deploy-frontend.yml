@@ -13,7 +13,7 @@ jobs:
     # Configure Environment
     environment:
       name: deployment
-      url: http://${{ secrets.FRONTEND_HOST }}
+      url: http://${{ vars.FRONTEND_HOST }}
       permissions:
         contents: read
     steps:
@@ -25,7 +25,7 @@ jobs:
           GIT_BRANCH: "${{ github.ref_name }}"
           TARGET_DIR: "/home/ubuntu/frontend"
         with:
-          host: ${{ secrets.FRONTEND_HOST }}
+          host: ${{ vars.FRONTEND_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
