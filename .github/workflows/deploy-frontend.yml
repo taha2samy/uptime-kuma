@@ -9,18 +9,19 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+
+    # Configure Environment
     environment:
       name: deployment
       url: http://${{ secrets.FRONTEND_HOST }}
-
+      permissions:
+        contents: read
     steps:
       - name: Execute Remote Deployment via SSH
         uses: appleboy/ssh-action@master
         env:
           # Construct dynamic variables from GitHub Context
-          GIT_REPO: "https://github.com/${{ github.repository }}.git"
+          GIT_REPO: "https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           GIT_BRANCH: "${{ github.ref_name }}"
           TARGET_DIR: "/home/ubuntu/frontend"
         with:

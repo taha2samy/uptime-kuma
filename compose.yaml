@@ -2,18 +2,26 @@ version: '3.8'
 
 services:
   uptime-kuma:
-    container_name: uptime-kuma-full-build
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile
-    image: uptime-kuma:local-full
+    container_name: uptime-kuma
+
+    # Switched to the official pre-built image to avoid high CPU/RAM usage during build 
+    # and to prevent timeouts on micro instances.
+    image: louislam/uptime-kuma:1
+
+    # The build section is commented out to skip building from source
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/Dockerfile
+
     restart: always
     ports:
       - "80:3001"
 
     volumes:
       - ./data:/app/data
-      - ./server:/app/server
-      - ./src:/app/src
-      - ./package.json:/app/package.json
-      - ./public:/app/public
+      # Code volumes are commented out because the pre-built image already includes the app code.
+      # Mounting local code over the image might cause conflicts or errors.
+      # - ./server:/app/server
+      # - ./src:/app/src
+      # - ./package.json:/app/package.json
+      # - ./public:/app/public
