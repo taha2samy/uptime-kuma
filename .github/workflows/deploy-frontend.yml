@@ -13,7 +13,7 @@ jobs:
     # Configure Environment
     environment:
       name: deployment
-      url: http://${{ secrets.FRONTEND_HOST }}
+      url: http://${{ vars.FRONTEND_HOST }}
       permissions:
         contents: read
     steps:
