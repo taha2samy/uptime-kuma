@@ -13,7 +13,7 @@ jobs:
       contents: read
     environment:
       name: deployment
-      url: http://${{ secrets.FRONTEND_HOST }}
+      url: http://${{ vars.FRONTEND_HOST }}
 
     steps:
       - name: Execute Remote Deployment via SSH
